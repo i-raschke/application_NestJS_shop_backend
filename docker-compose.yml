@@ -1,0 +1,105 @@
+version: '3.8'
+services:
+
+
+  db:
+    image: mysql:8.0.32
+    container_name: db
+    volumes:
+     - ./db:/docker-entrypoint-initdb.d
+    env_file:
+    - .env
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_USER: ${DB_USER}
+      MYSQL_ROOT_PASSWORD: ${DB_DOCKER_SECRET}
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3307:3306"
+    expose:
+      - "3306"
+    profiles:
+      - production
+      - development
+
+  backend:
+    image: backend
+    build:  
+      context: ./backend
+      dockerfile: 'Dockerfile'
+    restart: always     
+    container_name: backend
+    working_dir: /backend
+    volumes:
+      - ./backend:/backend
+    ports:
+      - "7331:7331"
+    expose:
+      - "7331"
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_SECRET_ENV: ${DB_DOCKER_SECRET}
+      DB_DATABASE: ${DB_DATABASE}
+      SESSION_SECRET: cVew!S7vV!*3o96mf^yqeQs!Uwo7$nS7
+      SESSION_NAME: ${SESSION_NAME}
+      MAX_AGE: ${MAX_AGE}
+      PORT: ${PORT}
+    profiles: ["production"]
+
+      
+
+  backend-dev:
+    image: backend
+    build:  
+      context: ./backend
+      dockerfile: 'Dockerfile'
+    restart: always     
+    container_name: backend
+    working_dir: /backend
+    volumes:
+      - ./backend:/backend
+      - /backend/node_modules
+    ports:
+      - "7331:7331"
+    expose:
+      - "7331"
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_SECRET_ENV: ${DB_DOCKER_SECRET}
+      DB_DATABASE: ${DB_DATABASE}
+      SESSION_SECRET: cVew!S7vV!*3o96mf^yqeQs!Uwo7$nS7
+      SESSION_NAME: ${SESSION_NAME}
+      MAX_AGE: ${MAX_AGE}
+      PORT: ${PORT}
+    stdin_open: true
+    tty: true
+    command: npm run start:dev
+    profiles: ["development"]
+
+
+
+
+
+     
+
+
+
+  
+
+
+
+
+
+  

@@ -1,0 +1,35 @@
+
+
+
+doctype html 
+html 
+    head
+
+    body 
+        p Hi #{name},
+        p 
+        p Congratulation for finishing your following order:
+        p
+
+        table(style='width:90%', border='1')
+          thead 
+            tr
+            th Object 
+            th Objectnumber
+            th Amount
+            th Price
+          tbody 
+            each item in objects
+              tr
+              td= item.object.object
+              td= item.object.objectNumber
+              td= item.quantity
+              td= item.subPrice
+
+
+        p
+        p
+        p Please transfer #{order.totalPrice} to our bankaccount with your code and the ordernumber #{order.id}.
+        p
+        p Regards
+        p TVEW

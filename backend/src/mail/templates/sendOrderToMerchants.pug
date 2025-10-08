@@ -1,0 +1,38 @@
+
+
+
+doctype html 
+html 
+    head
+
+    body 
+        p Hi #{companyName},
+        p 
+        p the user #{customer.firstName} #{customer.lastName} has just transferred the money for the following items:
+        p
+        p
+        table(style='width:90%', border='1')
+          thead 
+            tr
+            th Object 
+            th Objectnumber
+            th Color
+            th Amount
+          tbody 
+            each item in order
+              tr
+              td= item.object.object
+              td= item.object.objectNumber
+              td= item.object.color
+              td= item.quantity
+        p
+        p
+        p Please sent the items to the following address as possible: 
+        p 
+        p #{customer.firstName} #{customer.lastName}
+        p #{customer.address}
+        p #{customer.postcode}
+        p 
+        p
+        p Regards
+        p TVEW
