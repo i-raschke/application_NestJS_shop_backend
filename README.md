@@ -36,7 +36,7 @@ In the following some example data from the database is given that can be used:
 *admin:*
 | id              | code            | firstName       | lastName          | email                     | address                | postcode        | city            | telephoneNumber | mobileNumber    | password                         | createdAt             | role            |
 | :-------------: | :-------------: | :-------------: | :---------------: | :-----------------------: | :--------------------: | :-------------: | :-------------: | :-------------: | :-------------: | :------------------------------: | :-------------------: | :-------------: |
-| 1               | A7-6            | Ada-Charles     | Gabbage-Lovelace  | GabbageLovelace@gmail.com | Ada-Lovelace-Straße 17 | 63457           | Hanau           | 06181261291     | NULL            | BKwGU5XdACaU8WW0QvAoEhhBhrAB0Uzt | 2024-02-07 06:34:39   | admin           |
+| 1               | A7-6            | Ada-Charles     | Babbage-Lovelace  | BabbageLovelace@gmail.com | Ada-Lovelace-Straße 17 | 63457           | Hanau           | 06181261291     | NULL            | BKwGU5XdACaU8WW0QvAoEhhBhrAB0Uzt | 2024-02-07 06:34:39   | admin           |
 | id              | code            | firstName       | lastName          | email                     | address                | postcode        | city            | telephoneNumber | mobileNumber    | password                         | createdAt             | role            |
 
 
