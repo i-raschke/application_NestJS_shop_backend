@@ -27,11 +27,12 @@ services:
     build:  
       context: ./backend
       dockerfile: 'Dockerfile'
+      target: prod
     restart: always     
     container_name: backend
     working_dir: /backend
     volumes:
-      - ./backend:/backend
+      []
     ports:
       - "7331:7331"
     expose:
@@ -46,10 +47,11 @@ services:
       DB_USER: ${DB_USER}
       DB_SECRET_ENV: ${DB_DOCKER_SECRET}
       DB_DATABASE: ${DB_DATABASE}
-      SESSION_SECRET: cVew!S7vV!*3o96mf^yqeQs!Uwo7$nS7
+      SESSION_SECRET: ${SESSION_SECRET}
       SESSION_NAME: ${SESSION_NAME}
       MAX_AGE: ${MAX_AGE}
       PORT: ${PORT}
+    command: npm run start:prod
     profiles: ["production"]
 
       
@@ -59,6 +61,7 @@ services:
     build:  
       context: ./backend
       dockerfile: 'Dockerfile'
+      target: dev
     restart: always     
     container_name: backend
     working_dir: /backend
@@ -79,7 +82,7 @@ services:
       DB_USER: ${DB_USER}
       DB_SECRET_ENV: ${DB_DOCKER_SECRET}
       DB_DATABASE: ${DB_DATABASE}
-      SESSION_SECRET: cVew!S7vV!*3o96mf^yqeQs!Uwo7$nS7
+      SESSION_SECRET: ${SESSION_SECRET}
       SESSION_NAME: ${SESSION_NAME}
       MAX_AGE: ${MAX_AGE}
       PORT: ${PORT}
